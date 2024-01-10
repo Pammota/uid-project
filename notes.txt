@@ -1,0 +1,5 @@
+Chapter 1: Routing
+
+APP ROUTER: https://nextjs.org/docs/app/building-your-application/routing
+
+TAILWIND DOCS: https://tailwindcss.com/docs/
