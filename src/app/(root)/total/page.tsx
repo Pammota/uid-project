@@ -1,5 +1,5 @@
 import { LeftArrow } from "@/components/icons/LeftArrow";
-import { RightArrow } from "@/components/icons/RightArow";
+import { RightArrow } from "@/components/icons/RightArrow";
 import React from "react";
 
 export default function Page() {

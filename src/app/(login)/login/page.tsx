@@ -1,10 +1,7 @@
-
-
-
 export default function Page () {
     return (
         <div>
-            adb
+            ANA ARE MERE
         </div>
     )
 }
