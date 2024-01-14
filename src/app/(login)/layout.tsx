@@ -11,9 +11,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <main className="flex min-h-screen w-full gap-4 bg-gray-200 items-center justify-between p-4">
-          {children}
-        </main>
+        {children}
       </body>
     </html>
   );
