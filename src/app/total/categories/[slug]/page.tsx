@@ -1,3 +1,5 @@
+import { Input } from "@/components/shared/Input";
+import { TextArea } from "@/components/shared/TextArea";
 import React from "react";
 
 export default function Page({ params }: { params: { slug: string } }) {
@@ -13,20 +15,10 @@ export default function Page({ params }: { params: { slug: string } }) {
       <hr className="bg-black text-black h-0.5 rounded-md w-full" />
 
       <div className="w-full flex gap-4">
-        <div className="flex flex-col">
-          <label className="">Name</label>
-          <input type="text" className="p-2 rounded-lg bg-white" />
-        </div>
-
-        <div className="flex flex-col">
-          <label className="">Monthly Limit</label>
-          <input type="text" className="p-2 rounded-lg bg-white" />
-        </div>
+        <Input label="Name" />
+        <Input label="Monthly Limit" />
       </div>
-      <div className="flex flex-col h-full">
-        <label className="">Description</label>
-        <textarea className="p-2 rounded-lg bg-white h-full" />
-      </div>
+      <TextArea label="Description" />
     </div>
   );
 }

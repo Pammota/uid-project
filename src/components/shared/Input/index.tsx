@@ -1,14 +1,14 @@
 import React from "react";
 
 type Props = {
-label : string;
-}
+  label?: string;
+} & React.ComponentProps<"input">;
 
-export const Input = () => {
+export const Input = ({ label, ...props }: Props) => {
   return (
     <div className="flex flex-col">
-      <label className="">Monthly Limit</label>
-      <input type="text" className="p-2 rounded-lg bg-white" />
+      {label && <label className="">{label}</label>}
+      <input type="text" className="p-2 rounded-lg bg-white" {...props} />
     </div>
   );
 };
