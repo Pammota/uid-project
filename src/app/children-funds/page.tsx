@@ -1,12 +1,12 @@
 "use client"
 import React, {useState} from "react";
 
-type FoundProps = {
+type FundProps = {
     name: string;
     amount: number;
 }
 
-export const Found = ({name, amount} : FoundProps) => {
+export const Fund = ({name, amount} : FundProps) => {
     
     const [currentAmount, setAmount] = useState<number | null>(amount);
 
@@ -97,9 +97,9 @@ const removeButtonOnClick = () => {
 export default function Page() {
     return (
         <div className="w-full bg-zinc-300 rounded-lg p-2 flex flex-col gap-2 overflow-y-auto items-center">
-            <Found name="Monthly Budget" amount={100}/>
-            <Found name="Monthly Income" amount={100}/>
-            <ToggleButton label="Block All Founds" status={false}/>
+            <Fund name="Monthly Budget" amount={100}/>
+            <Fund name="Monthly Income" amount={100}/>
+            <ToggleButton label="Block All Funds" status={false}/>
             <RemoveButton onClick={removeButtonOnClick}/>
         </div>
     )
