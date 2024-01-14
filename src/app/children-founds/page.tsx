@@ -16,7 +16,7 @@ export const Found = ({name, amount} : FoundProps) => {
     }
 
     return (
-        <div className="w-full bg-yellow-100 rounded-lg p-2 flex flex-col gap-2 overflow-y-auto items-start">
+        <div className="w-full rounded-lg p-2 flex flex-col gap-2 overflow-y-auto items-start">
             <label className="text-black text-xl">
                 {name}
             </label>
@@ -46,7 +46,7 @@ export const ToggleButton = ({label, status}: ToggleButtonProps) => {
     };
 
     return (
-        <div className="w-full bg-yellow-100 rounded-lg p-2 flex flex-col gap-2 overflow-y-auto items-start">
+        <div className="w-full rounded-lg p-2 flex flex-col gap-2 overflow-y-auto items-start">
             
             <label className="text-black text-xl">
                 {label}
@@ -75,11 +75,11 @@ type RemoveButtonProps = {
 export const RemoveButton = ({onClick}: RemoveButtonProps) => {
 
     return (
-        <div className="w-full bg-yellow-100 rounded-lg p-2 flex flex-col gap-2 overflow-y-auto items-start">
+        <div className="w-full rounded-lg p-2 flex flex-col gap-2 overflow-y-auto items-start">
             
             <button 
                 type="button" 
-                className="bg-white-500 text-red-700 border border-red-400 border hover:bg-red-700 hover:text-white font-medium py-2 px-4 rounded"
+                className="bg-white-500 text-red-700 border-2 border-red-700 border hover:bg-red-700 hover:text-white font-medium py-2 px-4 rounded"
                 onClick={onClick}
             >
                 Remove
