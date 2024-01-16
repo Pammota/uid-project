@@ -1,6 +1,8 @@
 "use client";
+import { useStore, useUserStore } from "@/stores";
 import "./globals.css";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const tabs = ["summary", "children", "expenses", "total", "other", "test"];
 
@@ -30,6 +32,19 @@ const Tab = ({ tabs, tab }: { tabs: string[]; tab: string }) => {
   );
 };
 
+const parentData = {
+  income: 2000,
+  budget: 1000,
+  expenses: 600,
+  savings: 400,
+};
+
+const childData = {
+  budget: 500,
+  expenses: 300,
+  savings: 200,
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -38,19 +53,66 @@ export default function RootLayout({
   const pathname = usePathname();
   const tab = pathname.split("/")[1];
 
+  const user = useStore(useUserStore, (state) => state.user);
+  const [pageLoaded, setPageLoaded] = useState(false);
+
+  useEffect(() => {
+    setPageLoaded(true);
+  }, []);
+
+  useEffect(() => {
+    if (!user && pageLoaded) {
+      window.location.href = "/login";
+    }
+  }, [pageLoaded, user]);
+
   return (
     <html lang="en">
       <body>
         <main className="flex min-h-screen w-full gap-4 bg-gray-200 items-center justify-between p-4">
           <div className="flex text-white flex-col gap-4 w-full max-w-[25%] px-4 py-10 py bg-emerald-400 min-h-[94vh] rounded-xl">
-            <div className="bg-black/40 rounded-full p-2 w-full h-[300px]"></div>
-            <span className="font-semibold text-3xl">Ionut</span>
+            <div className="bg-sky-400/80 overflow-hidden flex justify-center items-center rounded-2xl w-full h-[300px]">
+              <img src="https://api.dicebear.com/7.x/lorelei/svg?seed=abc" 
+              alt="profilePic"
+              className="h-full scale-[70%]"
+              height={300}
+               />
+            </div>
+            <span className="font-semibold text-3xl capitalize">
+              {user?.username}
+            </span>
 
             <div className="pt-12 flex flex-col">
-              <span className="font-medium text-2xl">Income</span>
-              <span className="font-medium text-2xl">Budget</span>
-              <span className="font-medium text-2xl">Expenses</span>
-              <span className="font-medium text-2xl">Savings</span>
+              {user?.role === "parent" && (
+                <div className="font-medium text-2xl flex justify-between w-full pr-10">
+                  <span>Income:</span>
+                  <span>{parentData.income} </span>
+                </div>
+              )}
+              <div className="font-medium text-2xl flex justify-between w-full pr-10">
+                <span>Budget:</span>
+                <span>
+                  {user?.role === "parent"
+                    ? parentData.budget
+                    : childData.budget}
+                </span>
+              </div>
+              <div className="font-medium text-2xl flex justify-between w-full pr-10">
+                <span>Expenses:</span>
+                <span>
+                  {user?.role === "parent"
+                    ? parentData.expenses
+                    : childData.expenses}
+                </span>
+              </div>
+              <div className="font-medium text-2xl flex justify-between w-full pr-10">
+                <span>Savings:</span>
+                <span>
+                  {user?.role === "parent"
+                    ? parentData.savings
+                    : childData.savings}
+                </span>
+              </div>
             </div>
           </div>
 
