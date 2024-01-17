@@ -43,3 +43,17 @@ export const useUserStore = create<UserStore>()(
     }
   )
 );
+
+// type ChildStore = {
+//   child: User | null;
+//   updateUser: (newUser: User | null) => void;
+//   removeUser: () => void;
+// };
+
+// export const useChildStore = create<ChildStore>(
+//   (set) => ({
+//     child: null,
+//     updateUser: (newChild) => set({ child: newChild }),
+//     removeUser: () => set({ child: null }),
+//   })
+// );

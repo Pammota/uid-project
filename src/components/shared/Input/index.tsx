@@ -6,7 +6,7 @@ type Props = {
 
 export const Input = ({ label, className, ...props }: Props) => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col w-full">
       {label && <label className="">{label}</label>}
       <input type="text" className={`p-2 rounded-lg ${className??"bg-white"}`} {...props} />
     </div>

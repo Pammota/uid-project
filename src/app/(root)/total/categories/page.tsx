@@ -1,7 +1,12 @@
+"use client";
 import { LeftArrow } from "@/components/icons/LeftArrow";
-import React from "react";
+import React, { useState } from "react";
+
+const categsList = ["food", "school", "taxes", "misc"];
 
 export default function Page() {
+  const [categs, setCategs] = useState(categsList);
+
   return (
     <div className="flex flex-col gap-4 w-full bg-gray-200 rounded-xl px-8 py-4">
       <div className="flex flex-col w-full justify-between">
@@ -11,13 +16,26 @@ export default function Page() {
         >
           <LeftArrow className="w-4 h-4 stroke-[3px]" /> Back
         </a>
-        <span className="font-medium text-2xl w-full text-center pb-4">Categories</span>
+        <span className="font-medium text-2xl w-full text-center pb-4">
+          Categories
+        </span>
         <div className="flex flex-col gap-2 items-center  [&_>_span]:max-w-[80%] [&_>_span]:min-w-[40%]">
-          <span className="bg-white px-12 py-2 font-medium rounded-lg text-center"> Category1</span>
-          <span className="bg-white px-12 py-2 font-medium rounded-lg text-center"> Category2</span>
-          <span className="bg-white px-12 py-2 font-medium rounded-lg text-center"> Category3</span>
-          <span className="bg-white px-12 py-2 font-medium rounded-lg text-center"> Category4</span>
-          <button className="p-2 font-light text-4xl bg-white w-10 h-10 rounded-lg"> <div className="-translate-y-[11px]">+</div> </button>
+          {categs.map((categ) => (
+            <a
+              key={categ}
+              href={`categories/${categ}`}
+              className="bg-white px-12 py-2 font-medium rounded-lg text-center w-1/2 first-letter:capitalize"
+            >
+              {" "}
+              {categ}{" "}
+            </a>
+          ))}
+          <button className="p-2 font-light text-4xl bg-white w-10 h-10 rounded-lg"
+          onClick={()=> {
+            setCategs([...categs, "new_category"])
+          }}>
+            <div className="-translate-y-[11px]">+</div>{" "}
+          </button>
         </div>
       </div>
     </div>

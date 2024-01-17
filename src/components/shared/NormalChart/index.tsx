@@ -17,11 +17,12 @@ type Measurement = {
 type Props = {
   data: Measurement[];
   name: string;
+  height?: number;
 };
 
-export const NormalChart = ({ data, name }: Props) => {
+export const NormalChart = ({ data, name, height }: Props) => {
   return (
-    <ResponsiveContainer width="100%" height={340}>
+    <ResponsiveContainer width="100%" height={height ?? 340}>
       <LineChart data={data}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis />

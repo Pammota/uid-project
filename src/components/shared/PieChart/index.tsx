@@ -4,11 +4,12 @@ import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from 'recharts';
 interface PieChartProps {
   data: { name: string; value: number }[];
   colors: string[];
+  height?: number;
 }
 
-const PieChartComponent: React.FC<PieChartProps> = ({ data, colors }) => {
+const PieChartComponent: React.FC<PieChartProps> = ({ data, colors, height }) => {
   return (
-    <ResponsiveContainer width="100%" height={300}>
+    <ResponsiveContainer width="100%" height={height ?? 300}>
       <PieChart>
         <Pie
           data={data}

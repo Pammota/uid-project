@@ -8,29 +8,33 @@ import { useState } from "react";
 type ChildProps = {
   name: string;
   color: string;
+  selected?: boolean;
 };
 
-function hslToHex(h: number, s: number, l: number) {
-  l /= 100;
-  const a = (s * Math.min(l, 1 - l)) / 100;
-  const f = (n: number) => {
-    const k = (n + h / 30) % 12;
-    const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
-    return Math.round(255 * color)
-      .toString(16)
-      .padStart(2, "0");
-  };
-  return `#${f(0)}${f(8)}${f(4)}`;
-}
-
-const generatePastel = () => {
-  let hue = Math.floor(Math.random() * 360);
+export const generatePastel = () => {
+  function hslToHex(h: number, s: number, l: number) {
+    l /= 100;
+    const a = (s * Math.min(l, 1 - l)) / 100;
+    const f = (n: number) => {
+      const k = (n + h / 30) % 12;
+      const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+      return Math.round(255 * color)
+        .toString(16)
+        .padStart(2, "0");
+    };
+    return `#${f(0)}${f(8)}${f(4)}`;
+  }
+  let hue = Math.floor(Math.random() * 720);
   return hslToHex(hue, 100, 80);
 };
 
-const Child = ({ name, color }: ChildProps) => {
+export const Child = ({ name, color, selected }: ChildProps) => {
   return (
-    <div className="w-[200px] h-[200px] p-3 flex flex-col items-center justify-between bg-slate-300 rounded-2xl">
+    <div className={`w-[200px] cursor-pointer h-[200px] p-3 flex flex-col items-center justify-between rounded-2xl ${selected ? "": "bg-slate-300"}`}
+      onClick={() => {
+        window.location.href = `/children/${name}`;
+      }}
+    >
       <div
         style={{ background: color }}
         className="overflow-hidden flex justify-center items-center rounded-xl max-h-[80%] shadow-md"
@@ -51,23 +55,23 @@ const Child = ({ name, color }: ChildProps) => {
 
 const childrenList = [
   {
-    name: "Ionut",
+    name: "Michael",
     color: generatePastel(),
   },
   {
-    name: "Andreea",
+    name: "Andrei",
     color: generatePastel(),
   },
   {
-    name: "Fabian",
+    name: "Diana",
     color: generatePastel(),
   },
   {
-    name: "Denisa",
+    name: "Mary",
     color: generatePastel(),
   },
   {
-    name: "Azorel",
+    name: "Aaron",
     color: generatePastel(),
   },
 ];
